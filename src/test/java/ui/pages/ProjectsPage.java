@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ui.core.BaseSeleniumPage;
 
+import static ui.utils.ConfigProvider.*;
+
 public class ProjectsPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//a[contains(@href, 'create')]")
@@ -24,7 +26,7 @@ public class ProjectsPage extends BaseSeleniumPage {
 
 
     public ProjectsPage() {
-        driver.get("http://localhost:8080/projects");
+        driver.get(URL + PAGE_PROJECT);
         PageFactory.initElements(driver, this);
     }
 

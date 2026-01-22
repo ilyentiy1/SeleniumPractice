@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ui.core.BaseSeleniumPage;
 
+import static ui.utils.ConfigProvider.*;
+
 public class HubUsersPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//button[@mode='primary']")
@@ -29,7 +31,7 @@ public class HubUsersPage extends BaseSeleniumPage {
     private WebElement changePasswordCheckBox;
 
     public HubUsersPage() {
-        driver.get("http://localhost:8080/admin/hub/users");
+        driver.get(URL + PAGE_HUB);
         PageFactory.initElements(driver, this);
     }
 

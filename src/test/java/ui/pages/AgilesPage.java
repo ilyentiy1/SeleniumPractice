@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ui.core.BaseSeleniumPage;
 
+import static ui.utils.ConfigProvider.*;
+
 public class AgilesPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//button[@data-test='Новая карточка']")
@@ -26,7 +28,7 @@ public class AgilesPage extends BaseSeleniumPage {
     private  WebElement description;
 
     public AgilesPage() {
-        driver.get("http://localhost:8080/agiles/192-2/current");
+        driver.get(URL + PAGE_AGILES);
         PageFactory.initElements(driver, this);
     }
 
