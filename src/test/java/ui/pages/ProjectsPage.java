@@ -1,8 +1,10 @@
 package ui.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import ui.core.BaseSeleniumPage;
 
 import static ui.utils.ConfigProvider.*;
@@ -12,18 +14,41 @@ public class ProjectsPage extends BaseSeleniumPage {
     @FindBy(xpath = "//a[contains(@href, 'create')]")
     private WebElement createProjectButton;
 
-    @FindBy(xpath = "//button[@type='button'][.//img[contains(@src, 'ldm')]]")
-    private WebElement taskManagerTemplateButton;
+    private WebElement taskManagerTemplateButton() {
+        return find("//button[@type='button'][.//img[contains(@src, 'ldm')]]");
+    }
 
-    @FindBy(xpath = "//button[@data-test='accept-button']")
-    private WebElement acceptTemplateButton;
+    private WebElement acceptTemplateButton() {
+        return find("//button[@data-test='accept-button']");
+    }
 
-    @FindBy(xpath = "//input[@aria-label='Имя']")
-    private WebElement projectNameField;
+    private WebElement projectNameField() {
+        return find("//input[@aria-label='Имя']");
+    }
 
-//    @FindBy(xpath = "//button[@type='submit']")
-//    private WebElement submitButton;
+    private WebElement closeDialogButton() {
+        return find("//button[@aria-label='close dialog']");
+    }
 
+    private WebElement projectHeader() {
+        return find("//h1[@data-test='project-heading']");
+    }
+
+    private WebElement dropDownMenuButton() {
+        return find("//div[@class='ring-ui-dropdown_f23e']//button[@type='button']");
+    }
+
+    private WebElement deleteButton() {
+        return find("//button[contains(@class, 'danger')]");
+    }
+
+    private WebElement projectToDeleteInput() {
+        return find("//input[contains(@id, 'input')]");
+    }
+
+    private WebElement confirmDeletionButton() {
+        return find("//div[contains(@class, 'ring-ui-panel_b925')]//button[contains(@class, 'primary_d690')]");
+    }
 
     public ProjectsPage() {
         driver.get(URL + PAGE_PROJECT);
@@ -32,11 +57,26 @@ public class ProjectsPage extends BaseSeleniumPage {
 
     public ProjectsPage createProject(String projectName) {
         createProjectButton.click();
-        taskManagerTemplateButton.click();
-        acceptTemplateButton.click();
-        projectNameField.sendKeys(projectName);
-        projectNameField.submit();
-
+        taskManagerTemplateButton().click();
+        acceptTemplateButton().click();
+        projectNameField().sendKeys(projectName);
+        projectNameField().submit();
+        closeDialogButton().click();
         return this;
+    }
+
+    public ProjectsPage checkData(String projectName) {
+        Assert.assertEquals(projectHeader().getText(), projectName);
+        return this;
+    }
+
+    public void deleteProject(String projectName) {
+        actions
+                .moveToElement(dropDownMenuButton())
+                        .click()
+                                .perform();
+        deleteButton().click();
+        projectToDeleteInput().sendKeys(projectName);
+        confirmDeletionButton().click();
     }
 }

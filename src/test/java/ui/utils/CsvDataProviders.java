@@ -23,6 +23,10 @@ public class CsvDataProviders {
         return readCsv("src/test/resources/uiSource/issues.csv");
     }
 
+    @DataProvider(name = "projectData")
+    public static Iterator<Object[]> getProjectsData() throws IOException {
+        return readCsv("src/test/resources/uiSource/projects.csv");
+    }
 
 
     private static Iterator<Object[]> readCsv(String path) throws IOException {
