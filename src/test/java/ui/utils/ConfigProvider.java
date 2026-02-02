@@ -11,9 +11,12 @@ public interface ConfigProvider {
     }
 
     String URL = readConfig().getString("url");
+
     String PAGE_ISSUES = readConfig().getString("page.issues");
     String PAGE_HUB = readConfig().getString("page.hub");
     String PAGE_PROJECT = readConfig().getString("page.projects");
+    String PAGE_AGILES  = readConfig().getString("page.agiles");
+
     String LOGIN = readConfig().getString("login");
     String PASSWORD = readConfig().getString("password");
 }

@@ -1,15 +1,14 @@
 package ui.pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import ui.core.BaseSeleniumPage;
+import ui.core.BasePage;
 
 import static ui.utils.ConfigProvider.*;
 
-public class ProjectsPage extends BaseSeleniumPage {
+public class ProjectsPage extends BasePage {
 
     @FindBy(xpath = "//a[contains(@href, 'create')]")
     private WebElement createProjectButton;
@@ -35,7 +34,7 @@ public class ProjectsPage extends BaseSeleniumPage {
     }
 
     private WebElement dropDownMenuButton() {
-        return find("//div[@class='ring-ui-dropdown_f23e']//button[@type='button']");
+        return find("//button[contains(@aria-owns, 'dropdown')]");
     }
 
     private WebElement deleteButton() {
@@ -51,8 +50,8 @@ public class ProjectsPage extends BaseSeleniumPage {
     }
 
     public ProjectsPage() {
-        driver.get(URL + PAGE_PROJECT);
-        PageFactory.initElements(driver, this);
+        threadDriver.get().get(URL + PAGE_PROJECT);
+        PageFactory.initElements(threadDriver.get(), this);
     }
 
     public ProjectsPage createProject(String projectName) {

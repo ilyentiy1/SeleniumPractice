@@ -13,30 +13,35 @@ import java.util.List;
 
 public class CsvDataProviders {
 
-    @DataProvider(name = "userData")
+    @DataProvider(name = "userData", parallel = true)
     public static Iterator<Object[]> getUserData() throws IOException {
         return readCsv("src/test/resources/uiSource/users.csv");
     }
 
-    @DataProvider(name = "issueData")
+    @DataProvider(name = "issueData", parallel = true)
     public static Iterator<Object[]> getIssueData() throws IOException {
         return readCsv("src/test/resources/uiSource/issues.csv");
     }
 
-    @DataProvider(name = "projectData")
+    @DataProvider(name = "projectData", parallel = true)
     public static Iterator<Object[]> getProjectsData() throws IOException {
         return readCsv("src/test/resources/uiSource/projects.csv");
+    }
+
+    @DataProvider(name = "authData", parallel = true)
+    public static Iterator<Object[]> getAuthData() throws IOException {
+        return readCsv("src/test/resources/uiSource/authData.csv");
     }
 
 
     private static Iterator<Object[]> readCsv(String path) throws IOException {
         List<Object[]> data = new ArrayList<>();
 
-        try (Reader in = new FileReader(path)) { // Использование try-with-resources для закрытия потока
+        try (Reader in = new FileReader(path)) {
             CSVFormat format = CSVFormat.DEFAULT.builder()
                     .setHeader()
                     .setSkipHeaderRecord(true)
-                    .setIgnoreHeaderCase(true) // Полезно, если регистр заголовков может гулять
+                    .setIgnoreHeaderCase(true)
                     .setTrim(true).get();
 
             Iterable<CSVRecord> records = format.parse(in);

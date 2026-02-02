@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import ui.core.BaseSeleniumPage;
+import ui.core.BasePage;
 
 import java.time.Duration;
 
 import static ui.utils.ConfigProvider.*;
 
-public class HubPage extends BaseSeleniumPage {
+public class HubPage extends BasePage {
 
     @FindBy(xpath = "//button[@data-test='create-button']")
     private WebElement newUserButton;
@@ -61,12 +61,12 @@ public class HubPage extends BaseSeleniumPage {
     }
 
     private WebElement confirmDeleteButton() {
-        return find("//button[@class='button_bac4 button_bac4 heightS_fdc0 primary_d690 buttonWithoutIcon_b3e8 footerItem_e058']");
+        return find("//div[contains(@class, 'a5e1')]/button[contains(@class, 'primary')]");
     }
 
     public HubPage() {
-        driver.get(URL + PAGE_HUB);
-        PageFactory.initElements(driver, this);
+        threadDriver.get().get(URL + PAGE_HUB);
+        PageFactory.initElements(threadDriver.get(), this);
     }
 
     public HubPage createNewUser(String login, String email, String password)  {
@@ -100,8 +100,8 @@ public class HubPage extends BaseSeleniumPage {
     //метод для дефокусировки последнего использованного элемента и последующее submit-действие(enter)
     private void defocusAndSubmit() {
         actions
-                .moveByOffset(driver.manage().window().getSize().getWidth() / 2,
-                        driver.manage().window().getSize().getHeight() / 2)
+                .moveByOffset(threadDriver.get().manage().window().getSize().getWidth() / 2,
+                        threadDriver.get().manage().window().getSize().getHeight() / 2)
                 .click()
                 .pause(Duration.ofMillis(500))
                 .sendKeys(Keys.ENTER)

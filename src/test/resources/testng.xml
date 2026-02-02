@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="YouTrack Suite" parallel="classes" thread-count="2">
+    <test name="YouTrack Tests">
+        <classes>
+            <class name="ui.tests.AgilesActionsTest"/>
+            <class name="ui.tests.AuthTest"/>
+            <class name="ui.tests.CreateIssueTest"/>
+            <class name="ui.tests.CreateProjectTest"/>
+            <class name="ui.tests.CreateUserTest"/>
+        </classes>
+    </test>
+</suite>

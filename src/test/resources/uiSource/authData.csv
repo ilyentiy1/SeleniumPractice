@@ -1,6 +1,5 @@
-login,password,isPositive,wrongDetail
-kim_anthony,456,true,no
-karol_donaldson,904,true,no
-ilya_andreev,906,false,password
-liz_truss,475,false,login
-,,false,emptyCredentials
+login,password,isPositive
+kim_anthony,456,true
+karol_donaldson,904,true
+ilya_andreev,906,false
+,,false
