@@ -17,7 +17,7 @@ public class CreateUserTest extends BaseTest {
         new LoginPage()
                 .openHub()
                 .createNewUser(login, email, password)
-                .checkUserData(login, email);
-                //.deleteUser();
+                .checkUserData(login, email)
+                .deleteUser();
     }
 }
