@@ -34,7 +34,7 @@ public class ProjectsPage extends BasePage {
     }
 
     private WebElement dropDownMenuButton() {
-        return find("//button[contains(@aria-owns, 'dropdown')]");
+        return find("//div[contains(@data-test, 'three-dots')]/button");
     }
 
     private WebElement deleteButton() {
@@ -46,7 +46,7 @@ public class ProjectsPage extends BasePage {
     }
 
     private WebElement confirmDeletionButton() {
-        return find("//div[contains(@class, 'ring-ui-panel_b925')]//button[contains(@class, 'primary_d690')]");
+        return find("//div[contains(@class, 'ring-ui-panel')]/button[contains(@class,'primary')]");
     }
 
     public ProjectsPage() {

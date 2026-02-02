@@ -38,7 +38,6 @@ public class AgilesPage extends BasePage {
         return find("//div[@aria-label='Срок']");
     }
 
-    //"//div[@aria-label="Состояние"]//span[contains(text(), "В обработке")]"
 
     public AgilesPage() {
         threadDriver.get().get(URL + PAGE_AGILES);

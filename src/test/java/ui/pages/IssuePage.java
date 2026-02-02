@@ -1,8 +1,8 @@
 package ui.pages;
 
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import ui.core.BasePage;
@@ -30,16 +30,16 @@ public class IssuePage extends BasePage {
         return find("//a[@data-test='createIssueButton']");
     };
 
-    private WebElement issueRow() {
-        return find("(//table//tbody/tr)[1]");
+    private WebElement issueRow(String issueName) {
+        return find("//tr[contains(.,'" + issueName +"')]");
     };
 
-    private WebElement issueCheckBox() {
-        return find("//tr[1]/td[contains(@class, 'checkbox')]");
+    private WebElement dropDownMenuButton() {
+        return find("//div[@data-test ='ring-dropdown']/button[@aria-label='Показать больше']");
     };
 
     private WebElement deleteButton() {
-        return find("//button[@data-test='delete-item-button']");
+        return find("//button[contains(@class, 'delete')]");
     }
 
 
@@ -56,18 +56,16 @@ public class IssuePage extends BasePage {
     }
 
     public IssuePage checkIssueData(String summary, String description) {
-        actions.doubleClick(issueRow()).perform();
+        actions.click(issueRow(summary)).perform();
         Assert.assertEquals(summaryText().getText(), summary);
         Assert.assertEquals(descriptionText().getText(), description);
-        threadDriver.get().navigate().back();
         return this;
     }
 
     public void deleteIssue() {
-        issueCheckBox().click();
+        dropDownMenuButton().click();
         deleteButton().click();
         actions.sendKeys(Keys.ENTER).perform();
-
     }
 
 
