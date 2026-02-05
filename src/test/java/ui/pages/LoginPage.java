@@ -3,28 +3,20 @@ package ui.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import ui.core.BasePage;
+import ui.pages.project.ProjectsPage;
+import ui.pages.user.UsersPage;
 
 import static ui.utils.ConfigProvider.*;
 
 public class LoginPage extends BasePage {
-//    @FindBy(xpath = "//input[@ng-model='username']")
-//    private WebElement loginField;
-//
-//    @FindBy(xpath = "//input[@ng-model='password']")
-//    private WebElement passwordField;
+    @FindBy(xpath = "//input[@ng-model='username']")
+    private WebElement loginField;
 
-    private WebElement loginField() {
-        return find("//input[@ng-model='username']");
-    }
+    @FindBy(xpath = "//input[@ng-model='password']")
+    private WebElement passwordField;
 
-    private WebElement passwordField() {
-        return find("//input[@ng-model='password']");
-    }
-
-    private WebElement errorMessage() {
+    private WebElement getErrorMessage() {
         return find("//div[@data-test='error-message']");
     }
 
@@ -34,14 +26,14 @@ public class LoginPage extends BasePage {
     }
 
     private void performAdminLogin() {
-        loginField().sendKeys(LOGIN);
-        passwordField().sendKeys(PASSWORD);
-        passwordField().submit();
+        loginField.sendKeys(LOGIN);
+        passwordField.sendKeys(PASSWORD);
+        passwordField.submit();
     }
 
-    public IssuePage openIssues() {
+    public IssuesPage openIssues() {
         performAdminLogin();
-        return new IssuePage();
+        return new IssuesPage();
     }
 
     public ProjectsPage openProjects() {
@@ -49,9 +41,9 @@ public class LoginPage extends BasePage {
         return new ProjectsPage();
     }
 
-    public HubPage openHub() {
+    public UsersPage openHub() {
         performAdminLogin();
-        return new HubPage();
+        return new UsersPage();
     }
 
     public AgilesPage openAgiles() {
@@ -59,18 +51,21 @@ public class LoginPage extends BasePage {
         return new AgilesPage();
     }
 
-    public void performUserLoginAndCheck(String login, String password, String isPositive) {
-        loginField().sendKeys(login);
-        passwordField().sendKeys(password);
-        passwordField().submit();
-        if(!Boolean.parseBoolean(isPositive)) {
-            Assert.assertTrue(errorMessage().isDisplayed());
-        } else {
-            wait.until(ExpectedConditions.urlContains("/search"));
-            String currentUrl = threadDriver.get().getCurrentUrl();
-            assert currentUrl != null;
-            Assert.assertTrue(currentUrl.contains("/search"), "Переход не произведен");
-        }
+    public void performUserLoginAndCheck(String login, String password) {
+        loginField.sendKeys(login);
+        passwordField.sendKeys(password);
+        passwordField.submit();
     }
+
+    public IssuesPage positiveCheck() {
+        return new IssuesPage();
+    }
+
+    public void negativeCheck() {
+        WebElement errorMessage = getErrorMessage();
+        Assert.assertTrue(errorMessage.isDisplayed());
+    }
+
+
 
 }

@@ -1,17 +1,17 @@
-package ui.pages;
+package ui.pages.user;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import ui.core.BasePage;
+import ui.pages.BasePage;
 
 import java.time.Duration;
 
 import static ui.utils.ConfigProvider.*;
 
-public class HubPage extends BasePage {
+public class UsersPage extends BasePage {
 
     @FindBy(xpath = "//button[@data-test='create-button']")
     private WebElement newUserButton;
@@ -40,36 +40,14 @@ public class HubPage extends BasePage {
         return find("//label[contains(@for, 'checkbox')]");
     }
 
-    private WebElement loginText() {
-        return find("//input[contains(@class, 'login')]");
-    }
 
-    private WebElement emailText() {
-        return find("//input[contains(@class, 'email')]");
-    }
 
-    private WebElement deleteButton() {
-        return find("//button[@data-test='delete-button']");
-    }
-
-    private WebElement userSelector() {
-        return find("//button[@aria-label='Выберите пользователя']");
-    }
-
-    private WebElement userToChangeInput() {
-        return find("//input[contains(@id, 'input')]");
-    }
-
-    private WebElement confirmDeleteButton() {
-        return find("//div[contains(@class, 'a5e1')]/button[contains(@class, 'primary')]");
-    }
-
-    public HubPage() {
+    public UsersPage() {
         threadDriver.get().get(URL + PAGE_HUB);
         PageFactory.initElements(threadDriver.get(), this);
     }
 
-    public HubPage createNewUser(String login, String email, String password)  {
+    public CurrentUserPage createNewUser(String login, String email, String password)  {
         newUserButton.click();
         manualInputButton().click();
         loginField().sendKeys(login);
@@ -78,24 +56,10 @@ public class HubPage extends BasePage {
         confirmPasswordField().sendKeys(password);
         changePasswordCheckBox().click();
         defocusAndSubmit();
-        return this;
-    }
-
-    public HubPage checkUserData(String login, String email) {
-        Assert.assertEquals(loginText().getAttribute("value"), login);
-        Assert.assertEquals(emailText().getAttribute("value"), email);
-        return this;
+        return new CurrentUserPage();
     }
 
 
-    public void deleteUser() {
-        deleteButton().click();
-        userSelector().click();
-        userToChangeInput().click();
-        userToChangeInput().sendKeys("ilyentiy_");
-        userToChangeInput().sendKeys(Keys.ENTER);
-        confirmDeleteButton().click();
-    }
 
     //метод для дефокусировки последнего использованного элемента и последующее submit-действие(enter)
     private void defocusAndSubmit() {

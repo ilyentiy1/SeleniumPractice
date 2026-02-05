@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import ui.core.BasePage;
 
 import java.time.Duration;
 
@@ -22,52 +21,24 @@ public class AgilesPage extends BasePage {
     @FindBy(xpath = "//td[contains(@data-cell-id, '193-4')]")
     private WebElement anotherBoardArea;
 
-    private WebElement issueStateContainer() {
-        return find("//div[@aria-label='Состояние']");
-    }
-
-    private WebElement issuePriorityContainer() {
-        return find("//div[@aria-label='Приоритет']");
-    }
-
-    private WebElement issueExecutorContainer() {
-        return find("//div[@aria-label='Исполнитель']");
-    }
-
-    private WebElement datePickerContainer() {
-        return find("//div[@aria-label='Срок']");
-    }
-
-
     public AgilesPage() {
         threadDriver.get().get(URL + PAGE_AGILES);
         PageFactory.initElements(threadDriver.get(), this);
     }
 
-    public AgilesPage checkDragDrop() {
+    public void checkDragDrop() {
         actions
                 .clickAndHold(agileCard)
-                .pause(Duration.ofMillis(500)) // Даем время на активацию режима переноса
+                .pause(Duration.ofMillis(500))
                 .moveToElement(anotherBoardArea)
-                .pause(Duration.ofMillis(500)) // Замираем над целью, чтобы столбец "подсветился"
+                .pause(Duration.ofMillis(500))
                 .release()
                 .build()
                 .perform();
 
         Assert.assertTrue(isCardInCorrectColumn());
-        return this;
     }
 
-    public AgilesPage changeIssueProperties() {
-        issueStateContainer().click();
-
-        issuePriorityContainer().click();
-
-        issueExecutorContainer().click();
-
-        datePickerContainer().click();
-        return this;
-    }
 
     private boolean isCardInCorrectColumn() {
         try {

@@ -6,7 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import ui.core.BaseTest;
+import ui.tests.BaseTest;
 
 import java.io.File;
 import java.io.IOException;

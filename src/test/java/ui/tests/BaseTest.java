@@ -1,10 +1,11 @@
-package ui.core;
+package ui.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import ui.pages.BasePage;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -15,7 +16,6 @@ import java.util.Map;
 abstract public class BaseTest {
 
     protected static ThreadLocal<RemoteWebDriver> threadDriver = new ThreadLocal<>();
-
 
     @BeforeMethod
     public void setUp() {
@@ -50,8 +50,8 @@ abstract public class BaseTest {
     @AfterMethod
     public void tearDown() {
         if (getDriver() != null) {
-            getDriver().quit(); // Завершаем сессию в Selenoid
-            threadDriver.remove(); // Очищаем поток, чтобы не было утечек памяти
+            getDriver().quit();
+            threadDriver.remove();
         }
     }
 }

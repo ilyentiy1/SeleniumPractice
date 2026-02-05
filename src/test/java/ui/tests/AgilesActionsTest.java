@@ -3,7 +3,6 @@ package ui.tests;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ui.core.BaseTest;
 import ui.pages.LoginPage;
 import ui.utils.TestListener;
 

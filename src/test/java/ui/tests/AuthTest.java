@@ -2,7 +2,6 @@ package ui.tests;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ui.core.BaseTest;
 import ui.pages.LoginPage;
 import ui.utils.CsvDataProviders;
 import ui.utils.TestListener;
@@ -12,9 +11,22 @@ public class AuthTest extends BaseTest {
 
     @Test(testName = "Проверка авторизации и валидации данных для авторизации",
             dataProvider = "authData", dataProviderClass = CsvDataProviders.class)
-    public void authTest(String login, String password,
-                         String isPositive) {
-        new LoginPage()
-                .performUserLoginAndCheck(login, password, isPositive);
+    public void authTest(String login, String password, String isPositive) {
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.performUserLoginAndCheck(login, password);
+
+        /*
+        Позитивная проверка: проверка перехода на основную страницу
+        Негативная проверка: проверка наличия красных сообщений о неверных данных
+         */
+        if (Boolean.parseBoolean(isPositive)) {
+            loginPage
+                    .positiveCheck()
+                    .checkRedirect();
+        } else {
+            loginPage
+                    .negativeCheck();
+        }
     }
 }
