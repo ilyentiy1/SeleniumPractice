@@ -3,7 +3,6 @@ package ui.pages.project;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import ui.pages.BasePage;
 
 
@@ -35,10 +34,13 @@ public class CurrentProjectPage extends BasePage {
         PageFactory.initElements(threadDriver.get(), this);
     }
 
-    public CurrentProjectPage checkData(String projectName) {
+    public CurrentProjectPage closeDialog() {
         closeDialogButton.click();
-        Assert.assertEquals(projectHeader.getText(), projectName);
         return this;
+    }
+
+    public String getProjectName() {
+        return projectHeader.getText();
     }
 
     public void deleteProject(String projectName) {

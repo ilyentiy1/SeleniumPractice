@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.pages.LoginPage;
@@ -21,12 +22,14 @@ public class AuthTest extends BaseTest {
         Негативная проверка: проверка наличия красных сообщений о неверных данных
          */
         if (Boolean.parseBoolean(isPositive)) {
-            loginPage
+            Assert.assertTrue(loginPage
                     .positiveCheck()
-                    .checkRedirect();
+                    .isUserRedirected()
+            );
         } else {
-            loginPage
-                    .negativeCheck();
+            Assert.assertTrue(loginPage
+                    .isErrorMessageDisplayed()
+            );
         }
     }
 }

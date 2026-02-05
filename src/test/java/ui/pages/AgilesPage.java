@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -26,7 +25,7 @@ public class AgilesPage extends BasePage {
         PageFactory.initElements(threadDriver.get(), this);
     }
 
-    public void checkDragDrop() {
+    public AgilesPage moveIssueToAnotherBoard() {
         actions
                 .clickAndHold(agileCard)
                 .pause(Duration.ofMillis(500))
@@ -35,12 +34,10 @@ public class AgilesPage extends BasePage {
                 .release()
                 .build()
                 .perform();
-
-        Assert.assertTrue(isCardInCorrectColumn());
+        return this;
     }
 
-
-    private boolean isCardInCorrectColumn() {
+    public boolean isCardInCorrectBoard() {
         try {
             return wait.until(ExpectedConditions.presenceOfElementLocated(
                     By.xpath("//td[contains(@data-cell-id, '193-4')]//yt-agile-card")

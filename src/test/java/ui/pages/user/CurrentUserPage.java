@@ -34,12 +34,13 @@ public class CurrentUserPage extends BasePage {
         PageFactory.initElements(threadDriver.get(), this);
     }
 
-    public CurrentUserPage checkUserData(String login, String email) {
-        Assert.assertEquals(loginText.getAttribute("value"), login);
-        Assert.assertEquals(emailText.getAttribute("value"), email);
-        return this;
+    public String getLogin() {
+        return loginText.getAttribute("value");
     }
 
+    public String getEmail() {
+        return emailText.getAttribute("value");
+    }
 
     public void deleteUser() {
         deleteButton.click();

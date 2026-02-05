@@ -53,12 +53,12 @@ public class IssuesPage extends BasePage {
         return this;
     }
 
-    public IssuesPage checkIssueData(String summary, String description) {
-        WebElement summaryText = getSummaryText();
-        WebElement descriptionText = getDescriptionText();
-        Assert.assertEquals(summaryText.getText(), summary);
-        Assert.assertEquals(descriptionText.getText(), description);
-        return this;
+    public String getSummary() {
+        return getSummaryText().getText();
+    }
+
+    public String getDescription() {
+        return getDescriptionText().getText();
     }
 
     public void deleteIssue() {
@@ -69,11 +69,11 @@ public class IssuesPage extends BasePage {
         actions.sendKeys(Keys.ENTER).perform();
     }
 
-    public void checkRedirect() {
+    public boolean isUserRedirected() {
         wait.until(ExpectedConditions.urlContains("/search"));
         String currentUrl = threadDriver.get().getCurrentUrl();
         assert currentUrl != null;
-        Assert.assertTrue(currentUrl.contains("/search"), "Переход не произведен");
+        return currentUrl.contains("/search");
     }
 
 

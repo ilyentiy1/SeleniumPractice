@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//input[@ng-model='password']")
     private WebElement passwordField;
 
-    private WebElement getErrorMessage() {
+    private WebElement errorMessage() {
         return find("//div[@data-test='error-message']");
     }
 
@@ -61,11 +61,9 @@ public class LoginPage extends BasePage {
         return new IssuesPage();
     }
 
-    public void negativeCheck() {
-        WebElement errorMessage = getErrorMessage();
-        Assert.assertTrue(errorMessage.isDisplayed());
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage().isDisplayed();
     }
-
 
 
 }

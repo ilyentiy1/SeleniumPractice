@@ -1,6 +1,7 @@
 package ui.pages.user;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -40,6 +41,9 @@ public class UsersPage extends BasePage {
         return find("//label[contains(@for, 'checkbox')]");
     }
 
+    private WebElement userCell(String login) {
+        return find("//tr[contains(., '" + login + "')]");
+    }
 
 
     public UsersPage() {
@@ -58,8 +62,6 @@ public class UsersPage extends BasePage {
         defocusAndSubmit();
         return new CurrentUserPage();
     }
-
-
 
     //метод для дефокусировки последнего использованного элемента и последующее submit-действие(enter)
     private void defocusAndSubmit() {
