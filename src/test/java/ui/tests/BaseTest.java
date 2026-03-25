@@ -29,7 +29,7 @@ abstract public class BaseTest {
 
         try {
             RemoteWebDriver driver = new RemoteWebDriver(
-                    URI.create("http://localhost:4444/wd/hub").toURL(), options
+                    URI.create("http://host.docker.internal:4444/wd/hub").toURL(), options
             );
             threadDriver.set(driver);
         } catch (MalformedURLException e) {
