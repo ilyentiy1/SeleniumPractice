@@ -105,14 +105,24 @@
                         <phase>generate-test-sources</phase>
                         <goals>
                             <goal>add-test-source</goal>
-                            <goal>add-test-resource</goal>
                         </goals>
                         <configuration>
                             <sources>
                                 <source>src/meta-test/java</source>
                             </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-meta-test-resource</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
                             <resources>
-                                <directory>src/meta-test/resources</directory>
+                                <resource>
+                                    <directory>src/meta-test/resources</directory>
+                                </resource>
                             </resources>
                         </configuration>
                     </execution>
