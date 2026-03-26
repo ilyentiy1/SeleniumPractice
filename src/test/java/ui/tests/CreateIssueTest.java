@@ -13,7 +13,9 @@ import ui.utils.TestListener;
 public class CreateIssueTest extends BaseTest {
 
     @Test(testName = "Создание задачи, проверка данных и удаление",
-            dataProvider = "issueData", dataProviderClass = CsvDataProviders.class)
+            dataProvider = "issueData", dataProviderClass = CsvDataProviders.class,
+            groups = "main"
+    )
     public void createIssueTest(String summary, String description) {
         IssuesPage issuesPage = new LoginPage()
                 .openIssues()

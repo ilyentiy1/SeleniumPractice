@@ -1,24 +1,33 @@
 pipeline {
-    agent any            // Агент: где выполнять pipeline (any – на любом доступном узле, в нашем случае на самом Jenkins)
+    agent any
     tools {
-        maven "Maven 3.9.11"   // Указываем установленный Maven (имя должно совпадать с настроенным в Global Tools)
+        maven "Maven 3.9.11"
     }
     stages {
-        stage('Build') {
+        stage('Build & compile') {
             steps {
                 echo 'Starting build...'
-                // Сборка проекта (компиляция и упаковка без запуска тестов):
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean compile test-compile'
+                stash name: 'compiled-classes', includes: 'target/**'
             }
         }
-        stage('Test') {
+        stage('Meta-Tests') {
             steps {
-                echo 'Running tests...'
-                // Запускаем тесты Maven (TestNG + Selenium):
-                sh 'mvn clean test'
+                echo 'Running meta-tests...'
+                unstash 'compiled-classes'
+                sh 'mvn test -Dgroups=meta -Dsurefire.skipAfterFailureCount=1'
             }
-            // Мы добавим блок post чуть позже для публикации отчёта Allure
         }
-        // stage('Deploy') будет добавлен после настройки тестов и отчетов
+        stage("UI-Tests") {
+            steps {
+                echo 'Running main ui-tests'
+                unstash 'compiled-classes'
+                sh 'mvn test -Dgroups=main'
+            }
+        }
+    }
+    post {
+        echo 'Пайплайн завершен. Собираем отчет...'
+        //allure()
     }
 }

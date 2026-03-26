@@ -11,7 +11,9 @@ import ui.utils.TestListener;
 public class AuthTest extends BaseTest {
 
     @Test(testName = "Проверка авторизации и валидации данных для авторизации",
-            dataProvider = "authData", dataProviderClass = CsvDataProviders.class)
+            dataProvider = "authData", dataProviderClass = CsvDataProviders.class,
+            groups = "main"
+    )
     public void authTest(String login, String password, String isPositive) {
 
         LoginPage loginPage = new LoginPage();

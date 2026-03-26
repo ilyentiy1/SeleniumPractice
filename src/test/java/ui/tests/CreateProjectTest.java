@@ -12,7 +12,9 @@ import ui.utils.TestListener;
 public class CreateProjectTest extends BaseTest {
 
     @Test(testName = "Создание проекта, проверка данных и удаление",
-            dataProvider = "projectData", dataProviderClass = CsvDataProviders.class)
+            dataProvider = "projectData", dataProviderClass = CsvDataProviders.class,
+            groups = "main"
+    )
     public void createProjectTest(String projectName) {
         CurrentProjectPage projectPage = new LoginPage()
                 .openProjects()

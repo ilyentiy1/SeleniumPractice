@@ -11,7 +11,9 @@ import ui.utils.TestListener;
 @Listeners(TestListener.class)
 public class AgilesActionsTest extends BaseTest {
 
-    @Test(testName = "Тестирование действий в Agile досках")
+    @Test(testName = "Тестирование действий в Agile досках",
+            groups = "main"
+    )
     public void agilesActionsTest() {
         AgilesPage agilesPage = new LoginPage()
                 .openAgiles()

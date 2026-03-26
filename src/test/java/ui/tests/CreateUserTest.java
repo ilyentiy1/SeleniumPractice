@@ -5,7 +5,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.pages.LoginPage;
 import ui.pages.user.CurrentUserPage;
-import ui.pages.user.UsersPage;
 import ui.utils.CsvDataProviders;
 import ui.utils.TestListener;
 
@@ -14,7 +13,9 @@ import ui.utils.TestListener;
 public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Создание пользователя, проверка данных и удаление",
-            dataProvider = "userData", dataProviderClass = CsvDataProviders.class)
+            dataProvider = "userData", dataProviderClass = CsvDataProviders.class,
+            groups = "main"
+    )
     public void createUserTest(String login, String email, String password) {
         CurrentUserPage userPage = new LoginPage()
                 .openHub()
