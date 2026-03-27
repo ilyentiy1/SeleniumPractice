@@ -4,9 +4,7 @@ package ui.pages;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 
 public class IssuesPage extends BasePage {
@@ -32,7 +30,7 @@ public class IssuesPage extends BasePage {
 
     private WebElement getDropDownMenuButton() {
         return find("//div[@data-test ='ring-dropdown']/button[@aria-label='Показать больше']");
-    };
+    }
 
     private WebElement getDeleteButton() {
         return find("//button[contains(@class, 'delete')]");
@@ -40,7 +38,7 @@ public class IssuesPage extends BasePage {
 
 
     public IssuesPage() {
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
     }
 
     public IssuesPage createNewIssue(String summary, String description) {
@@ -71,7 +69,7 @@ public class IssuesPage extends BasePage {
 
     public boolean isUserRedirected() {
         wait.until(ExpectedConditions.urlContains("/search"));
-        String currentUrl = threadDriver.get().getCurrentUrl();
+        String currentUrl = driver.getCurrentUrl();
         assert currentUrl != null;
         return currentUrl.contains("/search");
     }

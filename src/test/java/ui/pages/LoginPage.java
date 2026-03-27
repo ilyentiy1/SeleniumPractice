@@ -2,7 +2,6 @@ package ui.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ui.pages.project.ProjectsPage;
 import ui.pages.user.UsersPage;
 
@@ -20,8 +19,8 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage() {
-        threadDriver.get().get(URL + PAGE_ISSUES);
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
+        driver.get(URL + PAGE_ISSUES);
     }
 
     private void performAdminLogin() {

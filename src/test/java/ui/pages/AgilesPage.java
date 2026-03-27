@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
@@ -21,8 +20,8 @@ public class AgilesPage extends BasePage {
     private WebElement anotherBoardArea;
 
     public AgilesPage() {
-        threadDriver.get().get(URL + PAGE_AGILES);
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
+        driver.get(URL + PAGE_AGILES);
     }
 
     public AgilesPage moveIssueToAnotherBoard() {

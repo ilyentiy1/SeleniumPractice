@@ -2,7 +2,6 @@ package ui.pages.project;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
 
 import static ui.utils.ConfigProvider.*;
@@ -14,8 +13,8 @@ public class ProjectsPage extends BasePage {
     private WebElement createProjectButton;
 
     public ProjectsPage() {
-        threadDriver.get().get(URL + PAGE_PROJECT);
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
+        driver.get(URL + PAGE_PROJECT);
     }
 
     public ProjectTemplatePage createProject() {

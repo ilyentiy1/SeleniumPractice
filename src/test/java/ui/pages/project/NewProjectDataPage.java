@@ -2,7 +2,6 @@ package ui.pages.project;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
 
 
@@ -13,7 +12,7 @@ public class NewProjectDataPage extends BasePage {
     private WebElement projectNameField;
 
     public NewProjectDataPage() {
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
     }
 
     public CurrentProjectPage inputProjectName(String name) {

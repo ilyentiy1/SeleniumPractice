@@ -1,22 +1,30 @@
 package ui.pages;
 
-import lombok.Setter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.tests.BaseTest;
 
 import java.time.Duration;
 
 abstract public class BasePage {
-    @Setter
-    protected static ThreadLocal<RemoteWebDriver> threadDriver;
+    protected WebDriver driver; // Универсальный тип
+    protected WebDriverWait wait;
+    protected Actions actions;
 
-    protected WebDriverWait wait = new WebDriverWait(threadDriver.get(), Duration.ofSeconds(5));
+    protected BasePage() {
+        this.driver = BaseTest.getDriver(); // Он вернет твой RemoteWebDriver, но под маской WebDriver
 
-    protected Actions actions = new Actions(threadDriver.get());
+        if (this.driver != null) {
+            this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            this.actions = new Actions(driver);
+            PageFactory.initElements(driver, this);
+        }
+    }
 
     protected WebElement find(String xpathExpression) {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathExpression)));

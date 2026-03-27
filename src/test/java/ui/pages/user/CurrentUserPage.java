@@ -3,8 +3,6 @@ package ui.pages.user;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import ui.pages.BasePage;
 
 public class CurrentUserPage extends BasePage {
@@ -31,7 +29,7 @@ public class CurrentUserPage extends BasePage {
     }
 
     public CurrentUserPage() {
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
     }
 
     public String getLogin() {

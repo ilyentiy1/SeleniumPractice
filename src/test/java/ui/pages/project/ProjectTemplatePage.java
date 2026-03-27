@@ -2,7 +2,6 @@ package ui.pages.project;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
 
 //Страница выбора шаблона проекта
@@ -16,7 +15,7 @@ public class ProjectTemplatePage extends BasePage {
     }
 
     public ProjectTemplatePage() {
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
     }
 
     public NewProjectDataPage chooseTemplate() {

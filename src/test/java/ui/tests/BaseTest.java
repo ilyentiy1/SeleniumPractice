@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import ui.pages.BasePage;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -40,7 +39,6 @@ abstract public class BaseTest {
         getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        BasePage.setThreadDriver(threadDriver);
     }
 
     public static WebDriver getDriver() {

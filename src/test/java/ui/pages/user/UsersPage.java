@@ -1,11 +1,8 @@
 package ui.pages.user;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import ui.pages.BasePage;
 
 import java.time.Duration;
@@ -41,14 +38,9 @@ public class UsersPage extends BasePage {
         return find("//label[contains(@for, 'checkbox')]");
     }
 
-    private WebElement userCell(String login) {
-        return find("//tr[contains(., '" + login + "')]");
-    }
-
-
     public UsersPage() {
-        threadDriver.get().get(URL + PAGE_HUB);
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
+        driver.get(URL + PAGE_HUB);
     }
 
     public CurrentUserPage createNewUser(String login, String email, String password)  {
@@ -66,8 +58,8 @@ public class UsersPage extends BasePage {
     //метод для дефокусировки последнего использованного элемента и последующее submit-действие(enter)
     private void defocusAndSubmit() {
         actions
-                .moveByOffset(threadDriver.get().manage().window().getSize().getWidth() / 2,
-                        threadDriver.get().manage().window().getSize().getHeight() / 2)
+                .moveByOffset(driver.manage().window().getSize().getWidth() / 2,
+                        driver.manage().window().getSize().getHeight() / 2)
                 .click()
                 .pause(Duration.ofMillis(500))
                 .sendKeys(Keys.ENTER)

@@ -2,7 +2,6 @@ package ui.pages.project;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
 
 
@@ -31,7 +30,7 @@ public class CurrentProjectPage extends BasePage {
     }
 
     public CurrentProjectPage() {
-        PageFactory.initElements(threadDriver.get(), this);
+        super();
     }
 
     public CurrentProjectPage closeDialog() {
