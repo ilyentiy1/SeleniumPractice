@@ -16,14 +16,14 @@ pipeline {
             steps {
                 echo 'Running meta-tests...'
                 unstash 'compiled-classes'
-                sh 'mvn test -Dgroups=meta -Dsurefire.skipAfterFailureCount=1'
+                sh 'mvn clean test -Dgroups=meta -Dsurefire.skipAfterFailureCount=1'
             }
         }
         stage("UI-Tests") {
             steps {
                 echo 'Running main ui-tests'
                 unstash 'compiled-classes'
-                sh 'mvn test -Dgroups=main'
+                sh 'mvn clean test -Dgroups=main'
             }
         }
     }
