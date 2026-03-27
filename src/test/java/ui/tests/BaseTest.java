@@ -16,7 +16,7 @@ abstract public class BaseTest {
 
     protected static ThreadLocal<RemoteWebDriver> threadDriver = new ThreadLocal<>();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
         ChromeOptions options = new ChromeOptions();
 
