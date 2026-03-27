@@ -13,8 +13,8 @@ public class LoginPageMetaTest {
 
     @Test(groups = "meta", description = "Линтинг xpath селекторов в логин пейдж")
     public void lintLoginPageSelectors() {
-        LoginPage page = new LoginPage();
-        Field[] fields = page.getClass().getDeclaredFields();
+        Class<LoginPage> clazz = LoginPage.class;
+        Field[] fields = clazz.getDeclaredFields();
         List<String> errors = new ArrayList<>();
 
         for (Field field : fields) {
