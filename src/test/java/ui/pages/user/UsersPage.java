@@ -40,7 +40,9 @@ public class UsersPage extends BasePage {
 
     public UsersPage() {
         super();
-        driver.get(URL + PAGE_HUB);
+        if (driver != null) {
+            driver.get(URL + PAGE_HUB);
+        }
     }
 
     public CurrentUserPage createNewUser(String login, String email, String password)  {

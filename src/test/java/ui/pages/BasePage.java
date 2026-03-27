@@ -12,12 +12,12 @@ import ui.tests.BaseTest;
 import java.time.Duration;
 
 abstract public class BasePage {
-    protected WebDriver driver; // Универсальный тип
+    protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
 
     protected BasePage() {
-        this.driver = BaseTest.getDriver(); // Он вернет твой RemoteWebDriver, но под маской WebDriver
+        this.driver = BaseTest.getDriver();
 
         if (this.driver != null) {
             this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));

@@ -20,7 +20,9 @@ public class LoginPage extends BasePage {
 
     public LoginPage() {
         super();
-        driver.get(URL + PAGE_ISSUES);
+        if (driver != null) {
+            driver.get(URL + PAGE_ISSUES);
+        }
     }
 
     private void performAdminLogin() {

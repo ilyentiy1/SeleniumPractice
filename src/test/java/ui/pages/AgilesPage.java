@@ -21,7 +21,9 @@ public class AgilesPage extends BasePage {
 
     public AgilesPage() {
         super();
-        driver.get(URL + PAGE_AGILES);
+        if (driver != null) {
+            driver.get(URL + PAGE_AGILES);
+        }
     }
 
     public AgilesPage moveIssueToAnotherBoard() {

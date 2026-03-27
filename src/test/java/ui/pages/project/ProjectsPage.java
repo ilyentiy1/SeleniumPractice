@@ -14,7 +14,9 @@ public class ProjectsPage extends BasePage {
 
     public ProjectsPage() {
         super();
-        driver.get(URL + PAGE_PROJECT);
+        if (driver != null) {
+            driver.get(URL + PAGE_PROJECT);
+        }
     }
 
     public ProjectTemplatePage createProject() {
