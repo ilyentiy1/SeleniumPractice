@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'Running main ui-tests'
                 unstash 'compiled-classes'
-                sh 'mvn test -DsuiteXmlFile=src/meta-test/resources/testng-main.xml'
+                sh 'mvn test -DsuiteXmlFile=src/test/resources/testng-main.xml'
             }
         }
     }
