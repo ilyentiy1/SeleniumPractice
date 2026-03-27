@@ -33,6 +33,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-testng</artifactId>
+            <version>3.2.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>6.3.3</version>
@@ -96,6 +102,7 @@
                     </properties>
                     <testFailureIgnore>false</testFailureIgnore>
                     <groups>${groups}</groups>
+                    <forkCount>0</forkCount>
                 </configuration>
             </plugin>
             <plugin>
