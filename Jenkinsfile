@@ -8,6 +8,8 @@ pipeline {
         stage('Build & compile') {
             steps {
                 echo 'Starting build...'
+                sh 'mvn dependency:tree'
+                sh 'mvn -version'
                 sh 'mvn clean compile test-compile -U'
                 stash name: 'compiled-classes', includes: 'target/**'
             }
