@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Running meta-tests...'
                 unstash 'compiled-classes'
-                sh 'mvn clean test -Dgroups=meta -Dsurefire.skipAfterFailureCount=1'
+                sh 'mvn clean test -Dgroups=meta -U -Dmaven.repo.local=./temp_repo'
             }
         }
         stage("UI-Tests") {
