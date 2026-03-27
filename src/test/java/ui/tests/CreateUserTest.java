@@ -1,15 +1,11 @@
 package ui.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.pages.LoginPage;
 import ui.pages.user.CurrentUserPage;
 import ui.utils.CsvDataProviders;
-import ui.utils.TestListener;
 
-
-@Listeners(TestListener.class)
 public class CreateUserTest extends BaseTest {
 
     @Test(testName = "Создание пользователя, проверка данных и удаление",

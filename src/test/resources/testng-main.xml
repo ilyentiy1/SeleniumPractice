@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="YouTrack Suite" parallel="classes" thread-count="2">
+    <listeners>
+        <listener class-name="ui.utils.TestListener" />
+    </listeners>
     <test name="YouTrack Tests">
+        <groups>
+            <run><include name="main"/></run>
+        </groups>
         <classes>
             <class name="ui.tests.AgilesActionsTest"/>
             <class name="ui.tests.AuthTest"/>

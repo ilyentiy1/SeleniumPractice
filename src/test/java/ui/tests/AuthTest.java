@@ -1,13 +1,10 @@
 package ui.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.pages.LoginPage;
 import ui.utils.CsvDataProviders;
-import ui.utils.TestListener;
 
-@Listeners(TestListener.class)
 public class AuthTest extends BaseTest {
 
     @Test(testName = "Проверка авторизации и валидации данных для авторизации",

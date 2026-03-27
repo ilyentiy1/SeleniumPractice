@@ -13,6 +13,7 @@
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <groups>meta,main</groups>
+        <suiteXmlFile>src/test/resources/testng-main.xml</suiteXmlFile>
     </properties>
 
     <dependencyManagement>
@@ -103,6 +104,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                     <groups>${groups}</groups>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <forkCount>1</forkCount>

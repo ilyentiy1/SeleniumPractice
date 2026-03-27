@@ -16,14 +16,14 @@ pipeline {
             steps {
                 echo 'Running meta-tests...'
                 unstash 'compiled-classes'
-                sh 'mvn clean test -Dgroups=meta -U -Dmaven.repo.local=./temp_repo'
+                sh 'mvn test -DsuiteXmlFile=src/meta-test/resources/testng-meta.xml'
             }
         }
         stage("UI-Tests") {
             steps {
                 echo 'Running main ui-tests'
                 unstash 'compiled-classes'
-                sh 'mvn clean test -Dgroups=main'
+                sh 'mvn test -DsuiteXmlFile=src/meta-test/resources/testng-main.xml'
             }
         }
     }

@@ -1,0 +1,11 @@
+<suite name="Meta Suite">
+    <test name="Meta Tests">
+        <groups>
+            <run><include name="meta"/></run>
+        </groups>
+        <classes>
+            <class name="tests.lint.LoginPageMetaTest" />
+            <class name="EnvironmentMetaTest"/>
+        </classes>
+    </test>
+</suite>

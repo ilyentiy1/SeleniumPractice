@@ -1,15 +1,12 @@
 package ui.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.pages.IssuesPage;
 import ui.pages.LoginPage;
 import ui.utils.CsvDataProviders;
-import ui.utils.TestListener;
 
 
-@Listeners(TestListener.class)
 public class CreateIssueTest extends BaseTest {
 
     @Test(testName = "Создание задачи, проверка данных и удаление",
