@@ -2,9 +2,7 @@ pipeline {
     agent any
     tools {
         maven "Maven 3.9.11"
-    }
-    docker {
-        image 'maven:3.9-eclipse-temurin-23'
+        jdk 'Eclipse Temurin 23'
     }
     stages {
         stage('Build & compile') {
@@ -26,6 +24,14 @@ pipeline {
                 echo 'Running main ui-tests'
                 unstash 'compiled-classes'
                 sh 'mvn test -Dgroups=main'
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                echo 'Пайплайн завершен.'
+                // Здесь можно использовать sh, allure и т.д.
             }
         }
     }
