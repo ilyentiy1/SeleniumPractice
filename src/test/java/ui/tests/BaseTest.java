@@ -38,7 +38,7 @@ abstract public class BaseTest {
 
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        //getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
     }
 
