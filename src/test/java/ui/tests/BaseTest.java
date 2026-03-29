@@ -21,6 +21,7 @@ abstract public class BaseTest {
         ChromeOptions options = new ChromeOptions();
 
         options.setCapability("selenoid:options", Map.of(
+                "sessionTimeout", "1m",
                 "enableVNC", true,
                 "enableVideo", false,
                 "screenResolution", "1920x1080x24"
@@ -45,11 +46,18 @@ abstract public class BaseTest {
         return threadDriver.get();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        System.out.println("DEBUG: Starting tearDown for thread " + Thread.currentThread().getId());
         if (getDriver() != null) {
-            getDriver().quit();
-            threadDriver.remove();
+            try {
+                getDriver().quit();
+                System.out.println("DEBUG: Driver quit successful");
+            } catch (Exception e) {
+                System.out.println("DEBUG: Error during quit: " + e.getMessage());
+            } finally {
+                threadDriver.remove();
+            }
         }
     }
 }
