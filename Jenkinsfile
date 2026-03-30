@@ -29,10 +29,7 @@ pipeline {
     }
     post {
         always {
-            script {
-                echo 'Пайплайн завершен.'
-                // Здесь можно использовать sh, allure и т.д.
-            }
+            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
         }
     }
 

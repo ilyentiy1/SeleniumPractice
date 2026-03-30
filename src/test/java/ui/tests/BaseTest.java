@@ -48,16 +48,9 @@ abstract public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        System.out.println("DEBUG: Starting tearDown for thread " + Thread.currentThread().getId());
         if (getDriver() != null) {
-            try {
-                getDriver().quit();
-                System.out.println("DEBUG: Driver quit successful");
-            } catch (Exception e) {
-                System.out.println("DEBUG: Error during quit: " + e.getMessage());
-            } finally {
-                threadDriver.remove();
-            }
+            getDriver().quit();
+            threadDriver.remove();
         }
     }
 }
