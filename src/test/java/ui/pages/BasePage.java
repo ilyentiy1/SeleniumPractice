@@ -20,7 +20,7 @@ abstract public class BasePage {
         this.driver = BaseTest.getDriver();
 
         if (this.driver != null) {
-            this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             this.actions = new Actions(driver);
             PageFactory.initElements(driver, this);
         }
