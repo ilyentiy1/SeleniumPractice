@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <groups>meta,main</groups>
         <suiteXmlFile>src/test/resources/testng-main.xml</suiteXmlFile>
-        <aspectj.version>1.9.21</aspectj.version>
+        <aspectj.version>1.9.25.1</aspectj.version>
     </properties>
 
     <dependencyManagement>
@@ -101,6 +101,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.42</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
